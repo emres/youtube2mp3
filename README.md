@@ -14,6 +14,6 @@ The usage is simple, just make sure that the script is executable and then type:
 
 on the command line (or create a shortcut to it for easier access).
 
-Here's a screenshot from http://www.flickr.com/photos/64416865@N00/5174479975/ :
+Here's a [screenshot](http://www.flickr.com/photos/64416865@N00/5174479975/) :
 
 ![youtube2mp3 screenshot](http://farm5.static.flickr.com/4152/5174479975_bb5e2b5ba2.jpg "youtube2mp3 screen shot")
