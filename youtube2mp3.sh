@@ -9,10 +9,21 @@ if [[ $return_code -eq 0 ]]; then
 		video_id=$(echo $video_id | cut -d'&' -f1)
 		video_title="$(youtube-dl --get-title $address)"
 		youtube-dl $address
-		ffmpeg -i $video_id.flv "$video_title".wav
-		lame "$video_title".wav "$video_title".mp3
-		rm $video_id.flv
+
+		if [ -e $video_id.flv ]; then
+			ffmpeg -i $video_id.flv "$video_title".wav
+			lame "$video_title".wav "$video_title".mp3
+			rm $video_id.flv
+		fi
+
+		if [ -e $video_id.mp4 ]; then
+			ffmpeg -i $video_id.mp4 "$video_title".wav
+			lame "$video_title".wav "$video_title".mp3
+			rm $video_id.mp4
+		fi
+
 		rm "$video_title".wav
+
 	else
 		zenity --error --text "A problem had been encountered."
 	fi
