@@ -23,6 +23,6 @@ if [[ $return_code -eq 0 ]]; then
 		rm "$video_title".wav
 	    zenity --width=260 --height=130 --title "YouTube MP3 Extractor" --info --text "Your MP3 file is ready."
 	else
-		zenity --error --text "A problem had been encountered."
+		zenity --error --text "Sorry but the system encountered a problem. Please check your YouTube address and try again later..."
 	fi
 fi
