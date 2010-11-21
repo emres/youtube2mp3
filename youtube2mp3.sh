@@ -1,6 +1,6 @@
 #!/bin/bash
 
-address=$(zenity --width=600 --height=150 --entry --title="YouTube MP3 Extractor" --text "Youtube address:")
+address=$(zenity --width=600 --height=150 --entry --title="YouTube MP3 Extractor" --text "Enter Youtube address:")
 return_code=$?
 regex='v=(.*)'
 if [[ $return_code -eq 0 ]]; then
@@ -18,9 +18,9 @@ if [[ $return_code -eq 0 ]]; then
 			ext="mp4"
 		fi
 
-		ffmpeg -i $video_id.$ext "$video_title".wav
-		lame "$video_title".wav "$video_title".mp3
-		rm $video_id.$ext "$video_title".wav
+		ffmpeg -i $video_id.$ext /tmp/"$video_title".wav
+		lame /tmp/"$video_title".wav /tmp/"$video_title".mp3
+		rm $video_id.$ext /tmp/"$video_title".wav
 
 	    zenity --width=260 --height=130 --title "YouTube MP3 Extractor" --info --text "Your MP3 file is ready."
 	else
