@@ -1,0 +1,10 @@
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[it_IT]=/usr/share/icons/gnome/scalable/apps/youtube.png
+Exec=/opt/youtube2mp3/youtube2mp3.sh
+Name[it_IT]=YouTube Downloader
+Name=ScreenCaster
+Icon=/usr/share/icons/gnome/scalable/apps/youtube.png
