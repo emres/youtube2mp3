@@ -36,6 +36,10 @@ if [[ $return_code -eq 0 ]]; then
 			ext="mp4"
 		fi
 
+		if [ -e $video_id.webm ]; then
+			ext="webm"
+		fi
+
 		ffmpeg -i $video_id.$ext /tmp/"$video_title".wav
 		lame /tmp/"$video_title".wav $dest_dir/"$video_title".mp3 -b $bitrate
 		rm $video_id.$ext /tmp/"$video_title".wav
