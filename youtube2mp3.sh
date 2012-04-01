@@ -41,7 +41,7 @@ if [[ $return_code -eq 0 ]]; then
 		fi
 
 		ffmpeg -i $video_id.$ext /tmp/"$video_title".wav
-		lame /tmp/"$video_title".wav $dest_dir/"$video_title".mp3 -b $bitrate
+		lame /tmp/"$video_title".wav "$dest_dir"/"$video_title".mp3 -b $bitrate
 		rm $video_id.$ext /tmp/"$video_title".wav
 
 	    zenity --width=260 --height=130 --title "YouTube MP3 Extractor" --info --text "Your MP3 file is ready."
