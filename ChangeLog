@@ -1,3 +1,16 @@
+=================== 0.3 ===================
+- Added non-interactive mode
+- Added help msg
+- Replace embedded spaces in video_title filename with dashes
+- Option to keep downloaded video file (with meaningful name)
+- Video conversion: Use avconv by default, ffmpeg may be specified
+- More complete error handling
+- Refactored code
+
+=================== 0.2 ===================
+- Added bitrate selection
+- Added installation system
+
 =================== 0.1 ===================
 * Initalize Release
 
