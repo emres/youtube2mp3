@@ -18,10 +18,38 @@ Alternatively you can simply make youtube2mp3.sh executable and then run:
 
 on the command line (or create a shortcut to it for easier access).
 
-Here's a [screenshot](http://www.flickr.com/photos/64416865@N00/5174479975/) :
+## Help
 
-![youtube2mp3 screenshot](http://farm5.static.flickr.com/4152/5174479975_bb5e2b5ba2.jpg "youtube2mp3 screen shot")
+Usage: youtube2mp3.sh [args]
+    Runs in interactive mode if no args are given
+        (dialog boxes will prompt for input)
+    Runs in non-interactive mode if any args are given
+
+    args = --url="<url>" |
+           --odir=<odir> |
+           --rate=<rate> |
+           --ffmpeg |
+           --vkeep |
+           --help
+
+    args may be given in any order
+      url must be given (enclose <url> in quotes)
+      odir defaults to current directory
+      rate defaults to 320
+      --vkeep: keeps downloaded video file (default is to delete)
+      --ffmpeg: use ffmpeg converter, not avconv
+      --help: emits this message
+      
+## ScreenShot
+
+Here's a [screenshot](https://raw.github.com/PTKDev/BashScript-YouTube2mp3/master/img/screenshot_full.png) :
+
+![youtube2mp3 screenshot](https://raw.github.com/PTKDev/BashScript-YouTube2mp3/master/img/screenshot_thumbs.png "youtube2mp3 screen shot")
+
+## Credits
 
 Installation system and bitrate selection support has been added by
 [PTKDev](https://github.com/PTKDev). See
 [BashScript-YouTube2mp3](https://github.com/PTKDev/BashScript-YouTube2mp3) for more details.
+
+Help system and downloaded video file support has been added by Joel Wittenberg <joel.wittenberg@gmail>
