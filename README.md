@@ -10,6 +10,8 @@ tested it on Ubuntu GNU/Linux machines.
 
 ## How to Install
 
+- Install packages (debian/ubuntu): aptitude install ffmpeg youtube-dl zenity lame
+- Install packages (archlinux):     pacman -S ffmpeg youtube-dl zenity lame
 - Run install.sh
 
 Alternatively you can simply make youtube2mp3.sh executable and then run:
@@ -35,9 +37,9 @@ Usage: youtube2mp3.sh [args]
     args may be given in any order
       url must be given (enclose <url> in quotes)
       odir defaults to current directory
-      rate defaults to 320
+      rate defaults to 256
       --vkeep: keeps downloaded video file (default is to delete)
-      --ffmpeg: use ffmpeg converter, not avconv
+      --avconv: use avconv converter, not ffmpeg
       --help: emits this message
       
 ## ScreenShot
