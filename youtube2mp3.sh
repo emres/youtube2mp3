@@ -1,5 +1,6 @@
 #!/bin/bash
-#    Copyright (C) 2012  PTKDev <ptkdev@gmail.com> - http://www.ptkdev.it/
+#    Copyright (C) 2012  Emre Sevinç - http://ileriseviye.org/blog
+#	 Forked by PTKDev <ptkdev@gmail.com> - http://www.ptkdev.it/
 #    Modified August 2012 by Joel Wittenberg <joel.wittenberg@gmail>
 #
 #    This Project is Fork Of youtube2mp3 (https://github.com/emres/youtube2mp3)
@@ -86,12 +87,8 @@ function zenity_bitrate()
 		  --list\
 		  --text="Select MP3 Bitrate"\
 		  --radiolist  --column "Pick"\
-		  --column "Bitrate" TRUE 128 FALSE 192 FALSE 256 FALSE 320)
+		  --column "Bitrate" FALSE 128 FALSE 192 TRUE 256 FALSE 320)
 	local l_retstat=$?
-	if [ $l_retstat -ne 0 ]; then
-		zenity_cancel "Get BitRate"
-		exit $l_retstat
-	fi
 }
 
 function zenity_keepvideo()
@@ -159,11 +156,11 @@ delete_video=1
 #
 # If you prefer ffmpeg to be the default then just change the if test
 if [ 1 -eq 1 ]; then
-	dflt_conv=avconv
-	alt_conv=ffmpeg
-else
 	dflt_conv=ffmpeg
 	alt_conv=avconv
+else
+	dflt_conv=avconv
+	alt_conv=ffmpeg
 fi
 avconv=${dflt_conv}
 
@@ -176,7 +173,7 @@ if [ $# -gt 0 ]; then
 
   # arg defaults
   dest_dir="$(pwd)"
-  dflt_bitrate=320
+  dflt_bitrate=256
   bitrate=$dflt_bitrate
 
   for arg in "$@"
