@@ -1,6 +1,14 @@
 /**** INSTALL ****/
+How to Install
+- Install packages (debian/ubuntu): aptitude install ffmpeg youtube-dl zenity lame
+- Install packages (archlinux):     pacman -S ffmpeg youtube-dl zenity lame
 - Run install.sh
 
+Alternatively you can simply make youtube2mp3.sh executable and then run:
+
+    ./youtube2mp3.sh
+
+on the command line (or create a shortcut to it for easier access).
 
 /**** SUPPORT ****/
 IRC: chat.freenode.net at #ptkdev

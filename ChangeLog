@@ -1,3 +1,10 @@
+=================== 0.3.1 ===================
+- Fixed zenity bitrate bug
+- Added packages dependences to README file (debian/ubuntu/archlinux)
+- 256 bitrate to default
+- Video conversion: Use ffmpeg by default, avconv may be specified
+- Fixed AUTHORS file
+
 =================== 0.3 ===================
 - Added non-interactive mode
 - Added help msg
