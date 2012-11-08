@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Youtube2mp3 by emres</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Youtube2mp3</h1>
+        <p>Download a Youtube music video and extract the sound as an MP3 file</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/emres/youtube2mp3" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/emres/youtube2mp3/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/emres/youtube2mp3/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>youtube2mp3: A very simple system to download YouTube music videos and convert them to mp3 files</h1>
+
+<p>This is a very simple and short Bash script to provide a GUI for downloading
+YouTube music videos and convert them to MP3 files. I developed this for my
+personal use (and to help a few friends) and then thought it would be helpful to
+others, too. So here it is.</p>
+
+<p>The script currently depends on zenity, youtube-dl and ffmpeg. I have
+tested it on Ubuntu GNU/Linux machines.</p>
+
+<h2>How to Install</h2>
+
+<ul>
+<li>Install packages (debian/ubuntu): aptitude install ffmpeg youtube-dl zenity lame</li>
+<li>Install packages (archlinux):     pacman -S ffmpeg youtube-dl zenity lame</li>
+<li>Run install.sh</li>
+</ul><p>Alternatively you can simply make youtube2mp3.sh executable and then run:</p>
+
+<pre><code>./youtube2mp3.sh
+</code></pre>
+
+<p>on the command line (or create a shortcut to it for easier access).</p>
+
+<h2>Help</h2>
+
+<p>Usage: youtube2mp3.sh [args]
+    Runs in interactive mode if no args are given
+        (dialog boxes will prompt for input)
+    Runs in non-interactive mode if any args are given</p>
+
+<pre><code>args = --url="&lt;url&gt;" |
+       --odir=&lt;odir&gt; |
+       --rate=&lt;rate&gt; |
+       --ffmpeg |
+       --vkeep |
+       --help
+
+args may be given in any order
+  url must be given (enclose &lt;url&gt; in quotes)
+  odir defaults to current directory
+  rate defaults to 256
+  --vkeep: keeps downloaded video file (default is to delete)
+  --avconv: use avconv converter, not ffmpeg
+  --help: emits this message
+</code></pre>
+
+<h2>ScreenShot</h2>
+
+<p>Here's a <a href="https://raw.github.com/PTKDev/BashScript-YouTube2mp3/master/img/screenshot_full.png">screenshot</a> :</p>
+
+<p><img src="https://raw.github.com/PTKDev/BashScript-YouTube2mp3/master/img/screenshot_thumbs.png" alt="youtube2mp3 screenshot" title="youtube2mp3 screen shot"></p>
+
+<h2>Credits</h2>
+
+<p>Installation system and bitrate selection support has been added by
+<a href="https://github.com/PTKDev">PTKDev</a>. See
+<a href="https://github.com/PTKDev/BashScript-YouTube2mp3">BashScript-YouTube2mp3</a> for more details.</p>
+
+<p>Help system and downloaded video file support has been added by Joel Wittenberg <a href="mailto:joel.wittenberg@gmail">joel.wittenberg@gmail</a></p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/emres">emres</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
