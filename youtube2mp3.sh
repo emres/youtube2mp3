@@ -106,8 +106,8 @@ function get_video_convert_extract()
 	l_vidid=$(echo $l_vidid | cut -d'&' -f1)
 	local l_vidtitle="$(youtube-dl --get-title $address)"
 
-	# replace spawn-of-satan-whitespace with dashes
-	l_vidtitle="$(echo $l_vidtitle | tr '[:blank:]' -)"
+	# uncomment to replace spawn-of-satan-whitespace with dashes
+	#l_vidtitle="$(echo $l_vidtitle | tr '[:blank:]' -)"
 
 	${dnload} $address
 
