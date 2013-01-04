@@ -10,18 +10,18 @@ tested it on Ubuntu GNU/Linux machines.
 
 ## How to Install
 
-- Install packages (debian/ubuntu): aptitude install ffmpeg youtube-dl zenity lame
-- Install packages (archlinux):     pacman -S ffmpeg youtube-dl zenity lame
-- Run install.sh
+- Install packages (debian/ubuntu): `aptitude install ffmpeg libav-tools youtube-dl zenity lame`
+- Install packages (archlinux):     `pacman -S ffmpeg youtube-dl zenity lame`
+- Run `sudo ./install.sh`
 
 Alternatively you can simply make youtube2mp3.sh executable and then run:
 
-    ./youtube2mp3.sh
+`./youtube2mp3.sh`
 
 on the command line (or create a shortcut to it for easier access).
 
 ## Help
-
+```html 
 Usage: youtube2mp3.sh [args]
     Runs in interactive mode if no args are given
         (dialog boxes will prompt for input)
@@ -41,12 +41,13 @@ Usage: youtube2mp3.sh [args]
       --vkeep: keeps downloaded video file (default is to delete)
       --avconv: use avconv converter, not ffmpeg
       --help: emits this message
+```
       
 ## ScreenShot
 
-Here's a [screenshot](https://raw.github.com/PTKDev/BashScript-YouTube2mp3/master/img/screenshot_full.png) :
+Here's a [screenshot](https://raw.github.com/emres/youtube2mp3/master/img/screenshot_full.png) :
 
-![youtube2mp3 screenshot](https://raw.github.com/PTKDev/BashScript-YouTube2mp3/master/img/screenshot_thumbs.png "youtube2mp3 screen shot")
+![youtube2mp3 screenshot](https://raw.github.com/emres/youtube2mp3/master/img/screenshot_thumbs.png "youtube2mp3 screen shot")
 
 ## Credits
 
