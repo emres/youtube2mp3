@@ -1,7 +1,7 @@
 #!/bin/bash
-#    Copyright (C) 2012  Emre Sevinç - http://ileriseviye.org/blog
-#	 Forked by PTKDev <ptkdev@gmail.com> - http://www.ptkdev.it/
-#    Modified August 2012 by Joel Wittenberg <joel.wittenberg@gmail>
+#	 Copyright (C) 2013  Emre Sevinç - http://ileriseviye.org/blog
+#	 					 PTKDev <ptkdev@gmail.com> - http://me.ptkdev.it/
+#	 					 Joel Wittenberg <joel.wittenberg@gmail>
 #
 #    This Project is Fork Of youtube2mp3 (https://github.com/emres/youtube2mp3)
 #
@@ -105,6 +105,7 @@ function get_video_convert_extract()
 	local l_vidid=${1}
 	l_vidid=$(echo $l_vidid | cut -d'&' -f1)
 	local l_vidtitle="$(youtube-dl --get-title $address)"
+	l_vidtitle="$(echo $l_vidtitle | tr '/' -)"
 
 	# uncomment to replace spawn-of-satan-whitespace with dashes
 	#l_vidtitle="$(echo $l_vidtitle | tr '[:blank:]' -)"
@@ -123,13 +124,13 @@ function get_video_convert_extract()
 		ext="webm"
 	fi
 
-	${avconv} -i "${l_vidid}".$ext /tmp/"${l_vidtitle}".wav
-	${audenc} /tmp/"${l_vidtitle}".wav\
+	${avconv} -i "${l_vidid}".$ext /tmp/"${l_vidid}".wav
+	${audenc} /tmp/"${l_vidid}".wav\
 			"$dest_dir"/"${l_vidtitle}".mp3\
 			-b $bitrate
 
 	# rm the converted video file
-	rm /tmp/"$l_vidtitle".wav
+	rm /tmp/"$l_vidid".wav
 
 	if [ $delete_video -gt 0 ]; then
 		# rm the downloaded video file
@@ -156,11 +157,11 @@ delete_video=1
 #
 # If you prefer ffmpeg to be the default then just change the if test
 if [ 1 -eq 1 ]; then
-	dflt_conv=ffmpeg
-	alt_conv=avconv
-else
 	dflt_conv=avconv
 	alt_conv=ffmpeg
+else
+	dflt_conv=ffmpeg
+	alt_conv=avconv
 fi
 avconv=${dflt_conv}
 

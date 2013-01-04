@@ -45,9 +45,9 @@ Usage: youtube2mp3.sh [args]
       
 ## ScreenShot
 
-Here's a [screenshot](https://raw.github.com/PTKDev/BashScript-YouTube2mp3/master/img/screenshot_full.png) :
+Here's a [screenshot](https://raw.github.com/emres/youtube2mp3/master/img/screenshot_full.png) :
 
-![youtube2mp3 screenshot](https://raw.github.com/PTKDev/BashScript-YouTube2mp3/master/img/screenshot_thumbs.png "youtube2mp3 screen shot")
+![youtube2mp3 screenshot](https://raw.github.com/emres/youtube2mp3/master/img/screenshot_thumbs.png "youtube2mp3 screen shot")
 
 ## Credits
 
