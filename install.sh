@@ -24,13 +24,13 @@ if [ ! -d "/opt/youtube2mp3/" ]; then
 mkdir /opt/youtube2mp3/
 fi
 
-if [ -a "/usr/share/icons/gnome/scalable/apps/youtube.png" ]; then
+if [ -e "/usr/share/icons/gnome/scalable/apps/youtube.png" ]; then
 rm /usr/share/icons/gnome/scalable/apps/youtube.png
 fi
-if [ -a "/opt/youtube2mp3/youtube2mp3.sh" ]; then
+if [ -e "/opt/youtube2mp3/youtube2mp3.sh" ]; then
 rm /opt/youtube2mp3/youtube2mp3.sh
 fi
-if [ -a "/usr/share/applications/YouTube\ Downloader.desktop" ]; then
+if [ -e "/usr/share/applications/YouTube\ Downloader.desktop" ]; then
 rm /usr/share/applications/YouTube\ Downloader.desktop
 fi
 

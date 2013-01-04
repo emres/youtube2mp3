@@ -1,15 +1,36 @@
-/**** INSTALL ****/
-How to Install
-- Install packages (debian/ubuntu): aptitude install ffmpeg youtube-dl zenity lame
-- Install packages (archlinux):     pacman -S ffmpeg youtube-dl zenity lame
-- Run install.sh
+How to Install:
 
-Alternatively you can simply make youtube2mp3.sh executable and then run:
+	- Install packages (debian/ubuntu): aptitude install ffmpeg libav-tools youtube-dl zenity lame
+	- Install packages (archlinux):     pacman -S ffmpeg youtube-dl zenity lame
+	- Run sudo ./install.sh
 
-    ./youtube2mp3.sh
+	Alternatively you can simply make youtube2mp3.sh executable and then run:
 
-on the command line (or create a shortcut to it for easier access).
+		./youtube2mp3.sh
 
-/**** SUPPORT ****/
-IRC: chat.freenode.net at #ptkdev
+	on the command line (or create a shortcut to it for easier access).
+	
+	
+
+Help:
+
+	Usage: youtube2mp3.sh [args]
+		Runs in interactive mode if no args are given
+			(dialog boxes will prompt for input)
+		Runs in non-interactive mode if any args are given
+
+		args = --url="<url>" |
+			   --odir=<odir> |
+			   --rate=<rate> |
+			   --ffmpeg |
+			   --vkeep |
+			   --help
+
+		args may be given in any order
+		  url must be given (enclose <url> in quotes)
+		  odir defaults to current directory
+		  rate defaults to 256
+		  --vkeep: keeps downloaded video file (default is to delete)
+		  --avconv: use avconv converter, not ffmpeg
+		  --help: emits this message
 

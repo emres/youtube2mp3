@@ -1,3 +1,10 @@
+=================== 0.4 ===================
+- Fix: Replace slash with dashes (if video-title have slash convertion failed)
+- Fix Video conversion: Use avconv by default, ffmpeg is deprecated
+- Fix Video conversion: Use id-youtube (not title) by default
+- Fix Installer: -a is deprecated
+- New debian/ubuntu package depends: libav-tools
+
 =================== 0.3.2 ===================
 - Replace dashes with  spawn-of-satan-whitespace
 
