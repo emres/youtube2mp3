@@ -5,7 +5,7 @@ YouTube music videos and convert them to MP3 files. I developed this for my
 personal use (and to help a few friends) and then thought it would be helpful to
 others, too. So here it is.
 
-The script currently depends on zenity, youtube-dl and ffmpeg. I have
+The script currently depends on zenity/kdialog, youtube-dl and ffmpeg. I have
 tested it on Ubuntu GNU/Linux machines.
 
 ## How to Install
@@ -55,3 +55,4 @@ Installation system and bitrate selection support has been added by
 [BashScript-YouTube2mp3](https://github.com/PTKDev/BashScript-YouTube2mp3) for more details.
 
 Help system and downloaded video file support has been added by Joel Wittenberg <joel.wittenberg@gmail>
+kdialog feature: January 2013 by Fran Quinto <fran.quinto <at> gmail>
