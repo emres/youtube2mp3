@@ -1,8 +1,8 @@
 #!/bin/sh
 #youtube2mp3
-#    Copyright (C) 2012  Emre Sevinç - http://ileriseviye.org/blog
-#	 Forked by PTKDev <ptkdev@gmail.com> - http://www.ptkdev.it/
-#    Modified August 2012 by Joel Wittenberg <joel.wittenberg@gmail>
+#	 Copyright (C) 2013  Emre Sevinç - http://ileriseviye.org/blog
+#	 					 PTKDev <ptkdev@gmail.com> - http://me.ptkdev.it/
+#	 					 Joel Wittenberg <joel.wittenberg@gmail>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -24,13 +24,13 @@ if [ ! -d "/opt/youtube2mp3/" ]; then
 mkdir /opt/youtube2mp3/
 fi
 
-if [ -a "/usr/share/icons/gnome/scalable/apps/youtube.png" ]; then
+if [ -e "/usr/share/icons/gnome/scalable/apps/youtube.png" ]; then
 rm /usr/share/icons/gnome/scalable/apps/youtube.png
 fi
-if [ -a "/opt/youtube2mp3/youtube2mp3.sh" ]; then
+if [ -e "/opt/youtube2mp3/youtube2mp3.sh" ]; then
 rm /opt/youtube2mp3/youtube2mp3.sh
 fi
-if [ -a "/usr/share/applications/YouTube\ Downloader.desktop" ]; then
+if [ -e "/usr/share/applications/YouTube\ Downloader.desktop" ]; then
 rm /usr/share/applications/YouTube\ Downloader.desktop
 fi
 
