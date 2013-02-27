@@ -1,7 +1,8 @@
 #!/bin/bash
-#	 Copyright (C) 2013  Emre Sevinç - http://ileriseviye.org/blog
-#	 					 PTKDev <ptkdev@gmail.com> - http://me.ptkdev.it/
-#	 					 Joel Wittenberg <joel.wittenberg@gmail>
+#    Copyright (C) 2012  Emre Sevinç - http://ileriseviye.org/blog
+#	 Forked by PTKDev <ptkdev@gmail.com> - http://www.ptkdev.it/
+#    Modified August 2012 by Joel Wittenberg <joel.wittenberg@gmail>
+#    Modified (kdialog feature) January 2013 by Fran Quinto <fran.quinto <at> gmail>
 #
 #    This Project is Fork Of youtube2mp3 (https://github.com/emres/youtube2mp3)
 #
@@ -49,8 +50,14 @@ function help()
 function zenity_cancel()
 {
 	local l_op=$1
-	zenity --title="$zenity_title" --info\
+	zenity --title="$var_title" --info\
 		--text="Operation [$l_op] cancelled"
+}
+
+function kdialog_cancel()
+{
+	local l_op=$1
+	kdialog --msgbox "Operation [$l_op] cancelled" --title="$var_title"
 }
 
 function zenity_address()
@@ -58,7 +65,7 @@ function zenity_address()
 	local l_addrprompt="Enter Youtube address:"
 	address=$(zenity --width=600 --height=150\
 			--entry\
-			--title="$zenity_title"\
+			--title="$var_title"\
 			--text="$l_addrprompt")
 	local l_retstat=$?
 	if [ $l_retstat -ne 0 ]; then
@@ -67,10 +74,23 @@ function zenity_address()
 	fi
 }
 
+function kdialog_address()
+{
+	local l_addrprompt="Enter Youtube address:"
+	address=$(kdialog\
+		--title="$var_title"\
+		--inputbox "$l_addrprompt" "" 600 150)
+	local l_retstat=$?
+	if [ $l_retstat -ne 0 ]; then
+		kdialog_cancel "Get URL"
+		exit $l_retstat
+	fi
+}
+
 function zenity_dir()
 {
 	local l_dirprompt="Select the destination directory for your MP3 file:"
-	dest_dir="$(zenity --title="$zenity_title"\
+	dest_dir="$(zenity --title="$var_title"\
 			 --file-selection --directory\
 			 --text="$l_dirprompt")"
 	local l_retstat=$?
@@ -80,10 +100,22 @@ function zenity_dir()
 	fi
 }
 
+function kdialog_dir()
+{
+	local l_dirprompt="Select the destination directory for your MP3 file:"
+	dest_dir="$(kdialog --title="$var_title $l_dirprompt "\
+			 --getexistingdirectory *;)"
+	local l_retstat=$?
+	if [ $l_retstat -ne 0 ]; then
+		kdialog_cancel "Get Output Directory"
+		exit $l_retstat
+	fi
+}
+
 function zenity_bitrate()
 {
 	bitrate=$(zenity\
-		  --title="$zenity_title"\
+		  --title="$var_title"\
 		  --list\
 		  --text="Select MP3 Bitrate"\
 		  --radiolist  --column "Pick"\
@@ -91,13 +123,56 @@ function zenity_bitrate()
 	local l_retstat=$?
 }
 
+function kdialog_bitrate()
+{
+	bitrate=$(kdialog --title="$var_title" --radiolist "Select MP3 Bitrate" 128 "128" off 192 "192" off 256 "256" on;)
+	local l_retstat=$?
+}
+
 function zenity_keepvideo()
 {
 	zenity\
 		--question\
-		--title="$zenity_title"\
+		--title="$var_title"\
 		--text="Do you want to keep the video file?"
 	delete_video=$?
+}
+
+function kdialog_keepvideo()
+{
+	kdialog\
+		--title="$var_title"\
+		--yesno "Do you want to keep the video file?"
+	delete_video=$?
+}
+
+function zenity_mp3ready()
+{
+	zenity --width=260\
+		--height=130\
+		--title="$var_title"\
+		--info\
+		--text="Your MP3 file is ready."
+}
+
+function kdialog_mp3ready()
+{
+	kdialog\
+		--title="$var_title"\
+		--msgbox "Your MP3 file is ready."
+}
+
+function zenity_error()
+{
+	zenity --error\
+		--text="$err"
+}
+
+function kdialog_error()
+{
+	kdialog\
+		--title="$var_title"\
+		--error "$err"
 }
 
 function get_video_convert_extract()
@@ -105,10 +180,9 @@ function get_video_convert_extract()
 	local l_vidid=${1}
 	l_vidid=$(echo $l_vidid | cut -d'&' -f1)
 	local l_vidtitle="$(youtube-dl --get-title $address)"
-	l_vidtitle="$(echo $l_vidtitle | tr '/' -)"
 
-	# uncomment to replace spawn-of-satan-whitespace with dashes
-	#l_vidtitle="$(echo $l_vidtitle | tr '[:blank:]' -)"
+	# replace spawn-of-satan-whitespace with dashes
+	l_vidtitle="$(echo $l_vidtitle | tr '[:blank:]' -)"
 
 	${dnload} $address
 
@@ -124,13 +198,13 @@ function get_video_convert_extract()
 		ext="webm"
 	fi
 
-	${avconv} -i "${l_vidid}".$ext /tmp/"${l_vidid}".wav
-	${audenc} /tmp/"${l_vidid}".wav\
+	${avconv} -i "${l_vidid}".$ext /tmp/"${l_vidtitle}".wav
+	${audenc} /tmp/"${l_vidtitle}".wav\
 			"$dest_dir"/"${l_vidtitle}".mp3\
 			-b $bitrate
 
 	# rm the converted video file
-	rm /tmp/"$l_vidid".wav
+	rm /tmp/"$l_vidtitle".wav
 
 	if [ $delete_video -gt 0 ]; then
 		# rm the downloaded video file
@@ -146,10 +220,20 @@ function get_video_convert_extract()
 # Script execution starts here
 #
 
-zenity_title="YouTube MP3 Extractor"
+var_title="YouTube MP3 Extractor"
 
 # default is to delete the downloaded video file
 delete_video=1
+
+# Check env for use Gnome (zenity) or Kde (kdialog)
+# Info here:
+#             http://enzotib.blogspot.com.es/
+#             http://askubuntu.com/questions/72549/determine-what-window-manager-or-desktop-is-running
+if [ "$DESKTOP_SESSION" = "kde-plasma" ]; then
+   windows=kdialog
+else
+   windows=zenity
+fi
 
 # avconv is a replacement for ffmpeg
 # I default to avconv simply because my main distros are
@@ -157,11 +241,11 @@ delete_video=1
 #
 # If you prefer ffmpeg to be the default then just change the if test
 if [ 1 -eq 1 ]; then
-	dflt_conv=avconv
-	alt_conv=ffmpeg
-else
 	dflt_conv=ffmpeg
 	alt_conv=avconv
+else
+	dflt_conv=avconv
+	alt_conv=ffmpeg
 fi
 avconv=${dflt_conv}
 
@@ -252,24 +336,20 @@ else
 	bitrate=0
 	address="please-supply-an-address"
 
-	zenity_address
-	zenity_dir
-	zenity_bitrate
-	zenity_keepvideo
+	${windows}_address
+	${windows}_dir
+	${windows}_bitrate
+	${windows}_keepvideo
 fi
 
-# youtube urls have 'v=' followed by a unique id 
+# youtube urls have 'v=' followed by a unique id
 
 regex='v=(.*)'
 if [[ $address =~ $regex ]]; then
 	get_video_convert_extract ${BASH_REMATCH[1]}
 
 	if [ $interactive -gt 0 ]; then
-		zenity --width=260\
-			--height=130\
-			--title="$zenity_title"\
-			--info\
-			--text="Your MP3 file is ready."
+		${windows}_mp3ready
 	else
 		echo
 		echo "$PROGNAME: Done."
@@ -279,8 +359,7 @@ else
 	err="Invalid YouTube URL: please correct and retry ..."
 
 	if [ $interactive -gt 0 ]; then
-		zenity --error\
-			--text="$err"
+		${windows}_error
 	else
 		echo "$PROGNAME: $err"
 	fi
