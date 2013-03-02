@@ -58,3 +58,5 @@ Installation system and bitrate selection support has been added by
 Help system and downloaded video file support has been added by Joel Wittenberg <joel.wittenberg@gmail>
 
 kdialog feature added by [Fran Quinto](https://github.com/fquinto).
+
+Progress bar support for Zenity by [Tomáš Hnyk (felagund)](https://github.com/felagund).
