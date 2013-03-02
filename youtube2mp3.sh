@@ -184,7 +184,8 @@ function get_video_convert_extract()
 	# replace spawn-of-satan-whitespace with dashes
 	l_vidtitle="$(echo $l_vidtitle | tr '[:blank:]' -)"
 
-	${dnload} $address
+    ${dnload} $address | stdbuf -i0 -o0 -e0 tr '\r' '\n' | stdbuf -i0 -o0 -e0 grep -e 'download.*ETA' | stdbuf -i0 -o0 -e0 sed -e 's/.download. //' | stdbuf -i0 -o0 -e0 sed -e 's/%.*//' | stdbuf -i0 -o0 -e0 sed -e 's/\..*//' | stdbuf -i0 -o0 -e0 sed -e 's/ *//' | zenity --progress --text="Downloading the video file from YouTube..." --auto-close --percentage=0
+
 
 	if [ -e "${l_vidid}".flv ]; then
 		ext="flv"
