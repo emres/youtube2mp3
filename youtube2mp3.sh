@@ -184,7 +184,7 @@ function get_video_convert_extract()
 	# replace spawn-of-satan-whitespace with dashes
 	l_vidtitle="$(echo $l_vidtitle | tr '[:blank:]' -)"
 
-    ${dnload} $address | stdbuf -i0 -o0 -e0 tr '\r' '\n' | stdbuf -i0 -o0 -e0 grep -e 'download.*ETA' | stdbuf -i0 -o0 -e0 sed -e 's/.download. //' | stdbuf -i0 -o0 -e0 sed -e 's/%.*//' | stdbuf -i0 -o0 -e0 sed -e 's/\..*//' | stdbuf -i0 -o0 -e0 sed -e 's/ *//' | zenity --progress --text="Downloading the video file from YouTube..." --auto-close --percentage=0
+    ${dnload} --id $address | stdbuf -i0 -o0 -e0 tr '\r' '\n' | stdbuf -i0 -o0 -e0 grep -e 'download.*ETA' | stdbuf -i0 -o0 -e0 sed -e 's/.download. //' | stdbuf -i0 -o0 -e0 sed -e 's/%.*//' | stdbuf -i0 -o0 -e0 sed -e 's/\..*//' | stdbuf -i0 -o0 -e0 sed -e 's/ *//' | zenity --progress --text="Downloading the video file from YouTube..." --auto-close --percentage=0
 
 
 	if [ -e "${l_vidid}".flv ]; then
@@ -197,6 +197,10 @@ function get_video_convert_extract()
 
 	if [ -e "${l_vidid}".webm ]; then
 		ext="webm"
+	fi
+
+	if [ -e "${l_vidid}".mkv ]; then
+		ext="mkv"
 	fi
 
 	${avconv} -i "${l_vidid}".$ext /tmp/"${l_vidtitle}".wav
